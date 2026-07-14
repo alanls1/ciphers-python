@@ -1,3 +1,7 @@
+import logging
+
+logger = logging.getLogger(__name__)
+
 #As variaveis "p" e "q" receberam 2 valores primos gerados aleatórios
 
 p = 164135779097971035236649394475230357278124915621463293023273902303843044950480319453250999410547280560670263768266230090357428490127143984896307355671461126842835184246788114540659957680623493680565155659511124829731008615236795830881171750793725202846786842109262329001165158003382102429709172276498886649237
@@ -69,33 +73,22 @@ def modInverse(a, m):
     return x
 
 
-n = p * q
 n = p * q  # isso faz parte do algoritimo
 m = totientePhi()  # utilização da Função totiente de Euler
 e = primosEntreSi(m)  # tira os primos entre eles
 d = modInverse(e, m)  # faz o mod inverso
-
-# exibe os valores na tela
-# print("p: {}".format(p))  # valor primo
-# print("q: {}".format(q))  # valor primo
-# Utilizado em conjunto com as chaves publica e privada
-# print("n: {}".format(n))
-# print("e: {}".format(e))  # A chave pública: o par (n,e)
-# print("d: {}".format(d))  # chave privada: a tripla (p,q,d)
 
 # Converte numero decimal em um valor binario exemplo: (exemplo: 198 -> 11000110)
 def getBinaryOfNumber(vlr):
     return "{0:08b}".format(vlr)
 
 
-print("\n\n")
-
 # mensagem cifrada - RSA_encrypt()
 
 
 def mensagemCifrada(mensagem):
-    converteAscii = [ord(letra) for letra in mensagem]   
-    print("Valores da tabela ASCII: ", converteAscii)
+    converteAscii = [ord(letra) for letra in mensagem]
+    logger.debug("Valores da tabela ASCII: %s", converteAscii)
 
     #function ord() retorna o código Unicode de um determinado caractere
     #Unicode - Padrão universal de codificação de caracteres
@@ -114,9 +107,6 @@ def mensagemCifrada(mensagem):
     #A função python pow() retorna o resultado do primeiro parâmetro elevado a potência do segundo parâmetro, o terceiro parâmetro executa módulo de mod no resultado do primeiro e segundo parâmetro .
 
     return msgcifrada
-
-
-print("\n\n")
 
 
 # mensagem decifrada - RSA_encrypt()
@@ -143,16 +133,3 @@ def mensagemDecifrada(mensagem):
     resu = "".join([chr(caractere) for caractere in arraDeBits])
 
     return resu
-
-# print(30*"=")
-# opcao = int(input("Digite 1 para Criptografar:\nDigite 2 para Descriptografar:\n"))
-
-# if opcao == 1:
-#     print(60*"=")
-#     print("Mensagem Cifrada: ", mensagemCifrada(input("Digite sua mensagem: ")))
-#     print(60*"=")
-# else:
-#     print(60*"=")
-#     print("Mensagem Decifrada: ", mensagemDecifrada(
-#         int(input("Digite sua sua mensagem Cifrada: "))))
-#     print(60*"=")

@@ -1,7 +1,10 @@
+import logging
 
 import controllers
 
 from flask import Flask
+
+logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
 
 app = Flask(__name__)
 
